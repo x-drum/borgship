@@ -1,7 +1,7 @@
 # SFTP
 
 
-![Borgship logo](https://raw.githubusercontent.com/xdrum/borgship/master/files/borgship-logo.png "borgship")
+![Borgship logo](https://raw.githubusercontent.com/x-drum/borgship/main/files/borgship-logo.png "borgship")
 
 # Borgbackup SSH backup (central) repository
 
