@@ -1,13 +1,11 @@
-FROM debian:bookworm
+FROM alpine:3.20.2
 LABEL org.opencontainers.image.authors="Alessio (x-drum) Cassibba [zerodev.it]"
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    DEBIAN_FRONTEND="noninteractive" apt-get -y install --no-install-recommends openssh-server borgbackup && \
-    rm -rf /etc/ssh/ssh_host_key* && \
-    mkdir -p /run/sshd && \
-    adduser --quiet --home /home/borg --shell /bin/bash --uid 1000 --disabled-password --gecos "" borg && \
-    usermod -p '*' borg
+RUN apk update && \
+  apk add openssh borgbackup && \
+  adduser -h /home/borg -s /bin/sh -u 1000 -g "" -D borg && \
+  passwd -u borg
+
 
 COPY files/motd /etc/motd
 COPY files/sshd_config /etc/ssh/sshd_config
