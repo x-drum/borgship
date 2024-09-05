@@ -4,7 +4,20 @@
 
 A simple and easy to use Borg SSH (central) repository - We will add your backups to our own repo.
 
+# Docker images and tags
+
 Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and [Alpine](https://hub.docker.com/_/alpine/) repository images with upstream [Borgbackup](https://www.borgbackup.org/) binaries.
+
+***Github Repository:***  [https://github.com/x-drum/borgship](https://github.com/x-drum/borgship)
+
+***Github Tags:***  [https://hub.docker.com/r/xdrum/borgship/tags](https://hub.docker.com/r/xdrum/borgship/tags)
+
+
+| Tag           | Distribution release | Borgbackup release |
+|---------------|----------------------|--------------------|
+|1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              |
+|1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              |
+|1.2.8-alpine   | alpine 3.2.0         | 1.2.8              |
 
 # Usage
 
