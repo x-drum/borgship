@@ -1,0 +1,24 @@
+#!/bin/sh
+
+## leave out ecdsa by default
+## /etc/ssh/ssh_host_ecdsa_key
+hostkeys="
+  /etc/ssh/ssh_host_rsa_key
+  /etc/ssh/ssh_host_ed25519_key
+"
+
+for hostkey in $hostkeys; do
+  if [ ! -f "$hostkey" ]; then
+    echo "Generating host keys" >&2
+    /usr/bin/ssh-keygen -A
+  fi
+done
+
+#if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+#	ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N "" < /dev/null
+#fi
+#if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
+#	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" < /dev/null
+#fi
+
+exec "$@"
