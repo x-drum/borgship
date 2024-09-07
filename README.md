@@ -17,6 +17,7 @@ Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and 
 
 | Tag           | Distribution release | Borgbackup release |
 |---------------|----------------------|--------------------|
+|main           | debian 12 (bookworm) | 2.0.0b9            |
 |1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              |
 |1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              |
 |1.2.8-alpine   | alpine 3.2.0         | 1.2.8              |
