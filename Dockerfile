@@ -1,4 +1,5 @@
-FROM alpine:3.20.2
+ARG ARCH=
+FROM ${ARCH}alpine:3.20.2
 LABEL org.opencontainers.image.authors="Alessio (x-drum) Cassibba [zerodev.it]"
 
 RUN apk update && \
