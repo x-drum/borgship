@@ -1,4 +1,5 @@
-FROM debian:bookworm
+ARG ARCH=
+FROM ${ARCH}debian:bookworm
 LABEL org.opencontainers.image.authors="Alessio (x-drum) Cassibba [zerodev.it]"
 
 RUN apt-get update && \
