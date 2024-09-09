@@ -2,7 +2,7 @@
 
 # A Borgbackup SSH (central) repository running on docker
 
-A simple and easy to use Borg SSH (central) repository - We will add your backups to our own repo.
+A simple and easy to use Borg SSH (central) repository - "We will add your backups to our own repo"
 
 # Docker images and tags
 
@@ -17,7 +17,7 @@ Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and 
 
 | Tag           | Distribution release | Borgbackup release | OS/ARCH
 |---------------|----------------------|--------------------|--------------
-|main           | debian 12 (bookworm) | 2.0.0b9            | linux/amd64
+|dev            | debian 12 (bookworm) | 2.0.0b9            | linux/amd64
 |1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              | linux/amd64
 |1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              | linux/arm/v7, linux/arm64, linux/amd64
 |1.2.4-alpine   | alpine 3.17.0        | 1.2.4              | linux/arm/v7, linux/arm64, linux/amd64
@@ -25,11 +25,12 @@ Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and 
 
 # Usage
 
-- Define server and ports (multiple server instances are possible)
-- Mount your volumes for: `backup`
-- Mount your user's authorized key files (e.g: `./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro`)
-- Mount your server OpenSSH host keys for consistent server fingerprints (e.g: `./ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key`, `./ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key`)  `[OPTIONAL]`
-- Override OpenSSH server sshd_config file (e.g: `./config/server/sshd_config:/etc/ssh/sshd_config`) `[OPTIONAL]`
+- Define at least one repository instance and port (multiple repositories instances are possible, e.g: using docker-compose) **(REQUIRED)**
+- Mount your volumes for: `backup` on /backups **(REQUIRED)**
+- Mount your volumes for: `restore` on /restore **(OPTIONAL)**
+- Mount your user's authorized key files (e.g: `./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro`) **(REQUIRED)**
+- Mount your server OpenSSH host keys for consistent server fingerprints (e.g: `./ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key`, `./ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key`)  **(OPTIONAL)**
+- Override OpenSSH server sshd_config file (e.g: `./config/server/sshd_config:/etc/ssh/sshd_config`) **(OPTIONAL)**
 
 # Notes
 ## Important
@@ -38,7 +39,7 @@ Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and 
 ```
 docker run \
     -p 3333:22 \
-    -v ./backups:/home/borg/backups \
+    -v ./backups:/backups \
     -v ./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro \
     -d xdrum/borgship
 ```
@@ -63,7 +64,7 @@ User "foo" with password "pass" can login with sftp and upload files to a folder
 ```
 docker run \
     -p 3333:22 \
-    -v ./backups:/home/borg/backups \
+    -v ./backups:/backups \
     -v ./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro \
     -d xdrum/borgship
 ```
@@ -73,7 +74,7 @@ docker run \
 ```
 docker run \
     -p 3333:22 \
-    -v ./backups:/home/borg/backups \
+    -v ./backups:/backups \
     -v ./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro \
     -v ./ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key \
     -v ./ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key \
@@ -89,7 +90,7 @@ services:
       image: xdrum/borgship
       container_name: borgship1
       volumes:
-          - ./backups:/home/borg/backups
+          - ./backups:/backups
           - ./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro
           - ./sshd_config:/etc/ssh/sshd_config
           - ./ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
@@ -106,7 +107,7 @@ services:
       image: xdrum/borgship
       container_name: borgship1
       volumes:
-          - ./backups:/home/borg/backups
+          - ./backups:/backups
           - ./id_rsa.pub:/home/borg/.ssh/authorized_keys:ro
           - ./sshd_config:/etc/ssh/sshd_config
           - ./ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
@@ -119,7 +120,7 @@ services:
       image: xdrum/borgship
       container_name: borgship2
       volumes:
-          - ./backups-server2:/home/borg/backups
+          - ./backups-server2:/backups
           - ./id_rsa-server2.pub:/home/borg/.ssh/authorized_keys:ro
           - ./sshd_config:/etc/ssh/sshd_config
           - ./ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
