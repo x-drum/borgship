@@ -14,6 +14,8 @@ COPY files/motd /etc/motd
 COPY files/sshd_config /etc/ssh/sshd_config
 COPY files/entrypoint /
 
+USER borg
+
 EXPOSE 22
 
 ENTRYPOINT ["/entrypoint"]
