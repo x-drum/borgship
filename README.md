@@ -15,12 +15,13 @@ Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and 
 **Docker Hub Tags:**  [https://hub.docker.com/r/xdrum/borgship/tags](https://hub.docker.com/r/xdrum/borgship/tags)
 
 
-| Tag           | Distribution release | Borgbackup release |
-|---------------|----------------------|--------------------|
-|main           | debian 12 (bookworm) | 2.0.0b9            |
-|1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              |
-|1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              |
-|1.2.8-alpine   | alpine 3.2.0         | 1.2.8              |
+| Tag           | Distribution release | Borgbackup release | OS/ARCH
+|---------------|----------------------|--------------------|--------------
+|main           | debian 12 (bookworm) | 2.0.0b9            | linux/amd64
+|1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              | linux/amd64
+|1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              | linux/arm/v7, linux/amd64
+|1.2.4-alpine   | alpine 3.17.0        | 1.2.4              | linux/arm/v7, linux/amd64
+|1.2.8-alpine   | alpine 3.20.0        | 1.2.8              | linux/arm/v7, linux/amd64 
 
 # Usage
 
