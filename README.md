@@ -1,10 +1,27 @@
-![Borgship logo](https://raw.githubusercontent.com/x-drum/borgship/main/files/borgship-logo.png "borgship")
+![Borgship logo](https://raw.githubusercontent.com/x-drum/borgship/main/files/borgship-banner.png "borgship")
 
-# Borgbackup SSH backup (central) repository
+# A Borgbackup SSH (central) repository running on docker
 
 A simple and easy to use Borg SSH (central) repository - We will add your backups to our own repo.
 
+# Docker images and tags
+
 Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and [Alpine](https://hub.docker.com/_/alpine/) repository images with upstream [Borgbackup](https://www.borgbackup.org/) binaries.
+
+**Github Repository:**  [https://github.com/x-drum/borgship](https://github.com/x-drum/borgship)
+
+**Docker Hub:**  [https://hub.docker.com/r/xdrum/borgship/tags](https://hub.docker.com/r/xdrum/borgship)
+
+**Docker Hub Tags:**  [https://hub.docker.com/r/xdrum/borgship/tags](https://hub.docker.com/r/xdrum/borgship/tags)
+
+
+| Tag           | Distribution release | Borgbackup release | OS/ARCH
+|---------------|----------------------|--------------------|--------------
+|main           | debian 12 (bookworm) | 2.0.0b9            | linux/amd64
+|1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              | linux/amd64
+|1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              | linux/arm/v7, linux/amd64
+|1.2.4-alpine   | alpine 3.17.0        | 1.2.4              | linux/arm/v7, linux/amd64
+|1.2.8-alpine   | alpine 3.20.0        | 1.2.8              | linux/arm/v7, linux/amd64 
 
 # Usage
 
@@ -121,6 +138,6 @@ This container will generate new SSH host keys at first run. To avoid that your 
 
 ## Generate your own persistent OpenSSH server host keys (Recommended method)
 ```
-ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N "" < /dev/null
-ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" < /dev/null
+ssh-keygen -t rsa -b 4096 -f ./ssh_host_rsa_key -N "" < /dev/null
+ssh-keygen -t ed25519 -f ./ssh_host_ed25519_key -N "" < /dev/null
 ```
