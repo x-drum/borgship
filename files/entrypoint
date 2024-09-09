@@ -23,5 +23,8 @@ fi
 
 chmod -R 600 /etc/ssh/ssh_host_*key
 chmod -R 644 /etc/ssh/ssh_host_*key.pub
+chown borg:borg /home/borg/.ssh/authorized_keys
+chmod -R 600 /home/borg/.ssh/authorized_keys
 
+su - borg
 exec "$@"
