@@ -5,7 +5,8 @@ LABEL org.opencontainers.image.authors="Alessio (x-drum) Cassibba [zerodev.it]"
 RUN apk update && \
   apk add openssh borgbackup && \
   adduser -h /home/borg -s /bin/sh -u 1000 -g "" -D borg && \
-  passwd -u borg
+  passwd -u borg && \
+  rm -rf /var/cache/apk/*
 
 
 COPY files/motd /etc/motd
