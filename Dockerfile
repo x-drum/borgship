@@ -9,7 +9,7 @@ RUN apt-get update && \
     adduser --quiet --home /home/borg --shell /bin/bash --uid 1000 --disabled-password --gecos "" borg && \
     usermod -p '*' borg && \
     python3 -m pip install borgbackup==1.4.0 borgmatic --break-system-packages && \
-    apt purge -y pipx pkg-config build-essential python3-dev libssl-dev libacl1-dev liblz4-dev libzstd-dev libxxhash-dev && \
+    apt purge -y pip pkg-config build-essential python3-dev libssl-dev libacl1-dev liblz4-dev libzstd-dev libxxhash-dev && \
     apt autoremove -y && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
