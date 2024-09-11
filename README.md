@@ -10,18 +10,19 @@ Docker builds linked to official [Debian](https://hub.docker.com/_/debian/) and 
 
 **Github Repository:**  [https://github.com/x-drum/borgship](https://github.com/x-drum/borgship)
 
-**Docker Hub:**  [https://hub.docker.com/r/xdrum/borgship/tags](https://hub.docker.com/r/xdrum/borgship)
+**Docker Hub:**  [https://hub.docker.com/r/xdrum/borgship](https://hub.docker.com/r/xdrum/borgship)
 
 **Docker Hub Tags:**  [https://hub.docker.com/r/xdrum/borgship/tags](https://hub.docker.com/r/xdrum/borgship/tags)
 
 
-| Tag           | Distribution release | Borgbackup release | OS/ARCH
-|---------------|----------------------|--------------------|--------------
-|dev            | debian 12 (bookworm) | 2.0.0b9            | linux/amd64
-|1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              | linux/amd64
-|1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              | linux/arm/v7, linux/arm64, linux/amd64
-|1.2.4-alpine   | alpine 3.17.0        | 1.2.4              | linux/arm/v7, linux/arm64, linux/amd64
-|1.2.8-alpine   | alpine 3.20.0        | 1.2.8              | linux/arm/v7, linux/arm64, linux/amd64 
+| Tag           | Distribution release | Borgbackup release | OS/ARCH                                | Notes
+|---------------|----------------------|--------------------|----------------------------------------|----------
+|dev            | debian 12 (bookworm) | 2.0.0b9            | linux/amd64                            | pip package, beta/unstable builds
+|1.4.0-bookworm | debian 12 (bookworm) | 1.4.0              | linux/amd64                            | pip package
+|1.4.0-alpine   | alpine 3.17.0        | 1.4.0              | linux/amd64                            | pip package, works on arm32 QNAP NAS
+|1.2.4-bookworm | debian 12 (bookworm) | 1.2.4              | linux/arm/v7, linux/arm64, linux/amd64 | system package
+|1.2.4-alpine   | alpine 3.17.0        | 1.2.4              | linux/arm/v7, linux/arm64, linux/amd64 | system package, works on arm32 QNAP NAS
+|1.2.8-alpine   | alpine 3.20.0        | 1.2.8              | linux/arm/v7, linux/arm64, linux/amd64 | system package
 
 # Usage
 
@@ -44,9 +45,9 @@ docker run \
     -d xdrum/borgship
 ```
 ## Additional Notes
-- User 'borg' will now be able to login via SSH and upload backups to directory `backups` located inside it's home.
+- User 'borg' will now be able to login via SSH and upload backups to specified `backups` directory.
 - At this time borg user has hardcoded `UID 1000` and `GID 1000`. Keep it in mind and check host filesystem permissions and ownership.
-- Some image will ship [Borgbackup](https://www.borgbackup.org/) binaries offered via the native package manager however latest official builds are provided as binaries from upstream (if any).
+- Some image will ship [Borgbackup](https://www.borgbackup.org/) binaries installed via system package manager, however latest official builds are provided as binaries from upstream or pip.
 - OpenSSH ECDSA host keys are disabled by default (However it's possibile to override this mounting keys and overriding sshd_config file).
 
 # Examples
