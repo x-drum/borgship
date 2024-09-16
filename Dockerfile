@@ -3,7 +3,7 @@ FROM ${ARCH}alpine:3.20.2
 LABEL org.opencontainers.image.authors="Alessio (x-drum) Cassibba [zerodev.it]"
 
 RUN apk update && \
-  apk add openssh borgbackup && \
+  apk add openssh borgbackup borgmatic && \
   adduser -h /home/borg -s /bin/sh -u 1000 -g "" -D borg && \
   passwd -u borg && \
   rm -rf /var/cache/apk/*
